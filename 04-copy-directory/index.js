@@ -5,15 +5,13 @@ const fsPromises = require('fs').promises;
 var filePath = path.join(__dirname, 'files')
 var copyFilePath = path.join(__dirname, 'files-copy')
 
-if (!fs.existsSync(copyFilePath)){
-    fs.mkdirSync(copyFilePath)
-}
+fsPromises.mkdir(copyFilePath).then(function() {}).catch(function() {});
 
 copyDir()
 function copyDir() {
     fs.readdir(copyFilePath, (err, files)=>{
         files.forEach(file => {
-            fs.unlinkSync(path.join(copyFilePath, file));
+            fs.unlink(path.join(copyFilePath, file),(err)=>{});
         })
     })
     fs.readdir(filePath,{withFileTypes: true}, (err, files)=>{
