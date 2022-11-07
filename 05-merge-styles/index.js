@@ -6,7 +6,7 @@ var filePath = path.join(__dirname, 'project-dist')
 var mergeStylePath = path.join(filePath, 'bundle.css')
 var stylePath = path.join(__dirname, 'styles')
 
-fs.truncateSync(mergeStylePath);
+fs.writeFile(mergeStylePath, " ",  (err) => {})
 fs.readdir(stylePath,{withFileTypes: true}, (err, files)=>{
     files.forEach(file => {
         if (file.isFile()){
